@@ -7,8 +7,8 @@ server.use(express.json());
 const userRouter = require("./users/router");
 server.use("/api/users", userRouter);
 
-// const classRouter = require("./classes/router");
-// server.use("/api/classes", classRouter);
+const classRouter = require("./classes/router");
+server.use("/api/classes", classRouter);
 
 const authRouter = require("./auth/auth_router");
 server.use("/api/auth", authRouter);
