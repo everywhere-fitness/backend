@@ -7,6 +7,10 @@ server.use(express.json());
 server.use(cors());
 server.use(helmet());
 
+server.use('/', (req, res, next) => {
+  res.send('<h1>Hey There<h1>')
+})
+
 const userRouter = require("./users/router");
 server.use("/api/users", userRouter);
 
