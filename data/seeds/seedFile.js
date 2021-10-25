@@ -3,7 +3,6 @@ const classes = [
     class_name: "Hard Hitter",
     type: "HITT",
     duration_minutes: 60,
-    start_time: "2022-01-01 15:30:00:00",
     intensity: 10,
     location: "Globo Gym",
     registered_users: 1,
@@ -15,7 +14,6 @@ const classes = [
     class_name: "Dime Aerobics",
     type: "Aerobics",
     duration_minutes: 45,
-    start_time: "2022-01-01 15:30:00:00",
     intensity: 2,
     location: "Cycling Studio next to the Wine Bar",
     registered_users: 2,
@@ -81,8 +79,17 @@ const registered = [
 ];
 
 exports.seed = async function (knex) {
-  await knex("classes").insert(classes);
-  await knex("users").insert(users);
   await knex("user_type").insert(user_type);
-  await knex("registered").insert(registered);
+  await knex.raw('TRUNCATE TABLE users CASCADE')
+  .then(function () {
+      return knex("users").insert(users)
+    });
+  await knex.raw('TRUNCATE TABLE classes CASCADE')
+  .then(function () {
+      return knex("classes").insert(classes)
+  });
+  await knex.raw('TRUNCATE TABLE registered CASCADE')
+  .then(function () {
+    return knex("registered").insert(registered)
+  });
 };

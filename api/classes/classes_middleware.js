@@ -35,8 +35,8 @@ function validateClass(req, res, next) {
     !location.trim() ||
     !max_class_size ||
     !max_class_size.trim() ||
-    !start_time ||
-    !start_time.trim() ||
+    // !start_time ||
+    // !start_time.trim() ||
     !type ||
     !type.trim()
   ) {
